@@ -21,7 +21,7 @@ class _LoginPageState extends State<LoginPage> {
       isLoggedIn = true;
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const MovieListPage()),
+        MaterialPageRoute(builder: (context) => MovieListPage(nama: username)),
       );
     } else {
       isLoggedIn = false;
