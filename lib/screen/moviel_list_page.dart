@@ -2,10 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:latihan_kuis_a/models/movie_model.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class MovieListPage extends StatelessWidget {
+class MovieListPage extends StatefulWidget {
   final String nama;
   const MovieListPage({super.key, required this.nama});
 
+  @override
+  State<MovieListPage> createState() => _MovieListPageState();
+}
+
+class _MovieListPageState extends State<MovieListPage> {
+  bool isAdded = false;
   @override
   Widget build(BuildContext context) {
     /*
@@ -17,7 +23,7 @@ class MovieListPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Halo $nama, selamat menonton film!",
+          "Halo ${widget.nama}, selamat menonton film!",
           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
         backgroundColor: Colors.blue,
@@ -40,6 +46,31 @@ class MovieListPage extends StatelessWidget {
                       Icon(Icons.star, color: Colors.amber),
                       Text("${movieList[index].rating}"),
                     ],
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        movieList[index].isAdded = !movieList[index].isAdded;
+                      });
+                    },
+                    style: ElevatedButton.styleFrom(
+                      side: BorderSide(
+                        color: movieList[index].isAdded
+                            ? Colors.blue
+                            : Colors.black,
+                      ),
+                      backgroundColor: movieList[index].isAdded
+                          ? Colors.blue
+                          : Colors.white,
+                    ),
+                    child: Text(
+                      "Tambahkan ke Daftar",
+                      style: TextStyle(
+                        color: movieList[index].isAdded
+                            ? Colors.white
+                            : Colors.black,
+                      ),
+                    ),
                   ),
                 ],
               ),
