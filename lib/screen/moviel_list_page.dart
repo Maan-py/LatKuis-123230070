@@ -13,6 +13,9 @@ class MovieListPage extends StatelessWidget {
         
     
      */
-    return const Placeholder();
+    return const Scaffold(
+      body: Text("Halaman movie", style: TextStyle(color: Colors.white)),
+      backgroundColor: Colors.black,
+    );
   }
 }
